@@ -82,7 +82,15 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>Modeling single-cell gene expression trends along cell pseudotime is a crucial analysis for exploring biological processes. However, model interpretability and flexibility are both indispensable for understanding biological processes.While existing methods either provide trends too complex to interpret using nonparametric models or use interpretable but restrictive models. Therefore, we propose scGTM, a flexible and interpretable modeling method that capture non-monotonic gene expression trend, generate biologically interpretable param- eters, and accommodate common gene expression count distributions. Comprehensive simulations and real-data applications verify that scGTM outperforms existing methods in interpretability and flexibility. Implemented by R, we enable the method to be applied in a fast and easy way. The R package supports multiple data input types, multi-core processing, and customized plotting.\ Here are the explanations on the parameters of scGTM:\ t: A numeric vector of the input normalized pseudotime data of a given gene,length equals the numbers of cells\ y1: A vector of integers, representing the input expression counts of a given gene,length equals the numbers of cells\ gene_name: A single string vector, indicates the gene name used in the model, default=NULL\ marginal: A string of the distribution name. One of <span class="math inline">\({Poisson}\)</span>, <span class="math inline">\({ZIP}\)</span>, <span class="math inline">\({NB}\)</span>, <span class="math inline">\({ZINB}\)</span>, and <span class="math inline">\({Gaussian}\)</span>.default=<span class="math inline">\({ZIP}\)</span>\ iter_num: A single integer vector, indicates max number of iteration used in the PSO algorithm that estimates model parameters\ seed: A numeric variable of the random seed, affecting parametric fitting of the marginal distribution.default=123\</p>
+<p>Modeling single-cell gene expression trends along cell pseudotime is a crucial analysis for exploring biological processes. However, model interpretability and flexibility are both indispensable for understanding biological processes. While existing methods either provide trends too complex to interpret using nonparametric models or use interpretable but restrictive models.<span class="math inline">\(\\\)</span></p>
+<p>scGTM is designed as an application to capture interpretable gene expression trends along cell pseudotime and reveal molecular insights underlying the biological processes. scGTM also can flexibly accommodate common distributions for modeling gene expression counts.<span class="math inline">\(\\\)</span></p>
+<p>Here are the explanations on the parameters of scGTM:<span class="math inline">\(\\\)</span></p>
+<p>t: A numeric vector of the input normalized pseudotime data of a given gene,length equals the numbers of cells<span class="math inline">\(\\\)</span></p>
+<p>y1: A vector of integers, representing the input expression counts of a given gene,length equals the numbers of cells<span class="math inline">\(\\\)</span></p>
+<p>gene_name: A single string vector, indicates the gene name used in the model, default=NULL<span class="math inline">\(\\\)</span></p>
+<p>marginal: A string of the distribution name. One of Poisson, ZIP, NB,ZINB, and Gaussian.default=ZIP<span class="math inline">\(\\\)</span></p>
+<p>iter_num: A single integer vector, indicates max number of iteration used in the PSO algorithm that estimates model parameters<span class="math inline">\(\\\)</span></p>
+<p>hill_only: A logical vector, determine whether the curve is hill only or not<span class="math inline">\(\\\)</span> seed: A numeric variable of the random seed, affecting parametric fitting of the marginal distribution.default=123<span class="math inline">\(\\\)</span></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Bioconductor/BiocParallel" class="external-link">BiocParallel</a></span><span class="op">)</span><span class="op">)</span></span>
@@ -97,10 +105,7 @@
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gyrus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">'gyrus_sce.csv'</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="run-example">Run Example<a class="anchor" aria-label="anchor" href="#run-example"></a>
-</h2>
+<p>#Example of gene Tmsb10 from gyrus dataset</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="../reference/scGTM.html">scGTM</a></span><span class="op">(</span>t<span class="op">=</span><span class="va">gyrus</span><span class="op">$</span><span class="va">pseudotime</span>, </span>
@@ -189,10 +194,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $Design_para</span></span>
 <span><span class="co">#&gt; [1] NA</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
-</h2>
+<p>#Visualization</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_result.html">plot_result</a></span><span class="op">(</span>para <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4.28</span>,<span class="fl">7.7</span>,<span class="fl">11.41</span>,<span class="fl">0.7</span><span class="op">)</span>, </span>
 <span>            t <span class="op">=</span> <span class="va">gyrus</span><span class="op">$</span><span class="va">pseudotime</span>, </span>
