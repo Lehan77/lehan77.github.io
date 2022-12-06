@@ -90,7 +90,8 @@
 <p>gene_name: A single string vector, indicates the gene name used in the model, default=NULL<span class="math inline">\(\\\)</span></p>
 <p>marginal: A string of the distribution name. One of Poisson, ZIP, NB,ZINB, and Gaussian.default=ZIP<span class="math inline">\(\\\)</span></p>
 <p>iter_num: A single integer vector, indicates max number of iteration used in the PSO algorithm that estimates model parameters<span class="math inline">\(\\\)</span></p>
-<p>hill_only: A logical vector, determine whether the curve is hill only or not<span class="math inline">\(\\\)</span> seed: A numeric variable of the random seed, affecting parametric fitting of the marginal distribution.default=123<span class="math inline">\(\\\)</span></p>
+<p>hill_only: A logical vector, determine whether the curve is hill only or not<span class="math inline">\(\\\)</span></p>
+<p>seed: A numeric variable of the random seed, affecting parametric fitting of the marginal distribution.default=123<span class="math inline">\(\\\)</span></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Bioconductor/BiocParallel" class="external-link">BiocParallel</a></span><span class="op">)</span><span class="op">)</span></span>
@@ -116,27 +117,27 @@
 <span><span class="co">#&gt; We are estimating gene with marginal Poisson .</span></span>
 <span><span class="co">#&gt; Best parameter estimation:</span></span>
 <span><span class="co">#&gt;  mu , k1 , k2 , t0:</span></span>
-<span><span class="co">#&gt;  4.09 8.98 4.11 0.65 -5.6 </span></span>
+<span><span class="co">#&gt;  4.28 7.7 11.41 0.7 3.4 </span></span>
 <span><span class="co">#&gt; The 95% confidence interval of the activation time t0:</span></span>
-<span><span class="co">#&gt;  t0 : ( 0.633 ,  0.674 )</span></span>
+<span><span class="co">#&gt;  t0 : ( 0.683 ,  0.718 )</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; The 95% CIs for activation strength k1 and k2:</span></span>
-<span><span class="co">#&gt;  k1 : ( 8.068 ,  9.883 )</span></span>
-<span><span class="co">#&gt;  k2 : ( 2.924 ,  5.291 )</span></span>
+<span><span class="co">#&gt;  k1 : ( 7.068 ,  8.342 )</span></span>
+<span><span class="co">#&gt;  k2 : ( 8.905 ,  13.92 )</span></span>
 <span><span class="co">#&gt; $negative_log_likelihood</span></span>
-<span><span class="co">#&gt; [1] 8229.511</span></span>
+<span><span class="co">#&gt; [1] 8181.274</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $mu</span></span>
-<span><span class="co">#&gt; [1] 4.088383</span></span>
+<span><span class="co">#&gt; [1] 4.283738</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $k1</span></span>
-<span><span class="co">#&gt; [1] 8.975355</span></span>
+<span><span class="co">#&gt; [1] 7.704972</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $k2</span></span>
-<span><span class="co">#&gt; [1] 4.107724</span></span>
+<span><span class="co">#&gt; [1] 11.4126</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $t0</span></span>
-<span><span class="co">#&gt; [1] 0.6533222</span></span>
+<span><span class="co">#&gt; [1] 0.7001891</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $phi</span></span>
 <span><span class="co">#&gt; [1] NA</span></span>
@@ -151,40 +152,40 @@
 <span><span class="co">#&gt; [1] NA</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $t0_lower</span></span>
-<span><span class="co">#&gt; [1] 0.633</span></span>
+<span><span class="co">#&gt; [1] 0.683</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $t0_upper</span></span>
-<span><span class="co">#&gt; [1] 0.674</span></span>
+<span><span class="co">#&gt; [1] 0.718</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $t0_std</span></span>
-<span><span class="co">#&gt; [1] 0.01052522</span></span>
+<span><span class="co">#&gt; [1] 0.008898592</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $k1_lower</span></span>
-<span><span class="co">#&gt; [1] 8.068</span></span>
+<span><span class="co">#&gt; [1] 7.068</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $k1_upper</span></span>
-<span><span class="co">#&gt; [1] 9.883</span></span>
+<span><span class="co">#&gt; [1] 8.342</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $k1_std</span></span>
-<span><span class="co">#&gt; [1] 0.4630958</span></span>
+<span><span class="co">#&gt; [1] 0.3247922</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $k2_lower</span></span>
-<span><span class="co">#&gt; [1] 2.924</span></span>
+<span><span class="co">#&gt; [1] 8.905</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $k2_upper</span></span>
-<span><span class="co">#&gt; [1] 5.291</span></span>
+<span><span class="co">#&gt; [1] 13.92</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $k2_std</span></span>
-<span><span class="co">#&gt; [1] 0.6037062</span></span>
+<span><span class="co">#&gt; [1] 1.279397</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $mu_lower</span></span>
-<span><span class="co">#&gt; [1] 3.972</span></span>
+<span><span class="co">#&gt; [1] 4.171</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $mu_upper</span></span>
-<span><span class="co">#&gt; [1] 4.205</span></span>
+<span><span class="co">#&gt; [1] 4.396</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $mu_std</span></span>
-<span><span class="co">#&gt; [1] 0.05942901</span></span>
+<span><span class="co">#&gt; [1] 0.05741533</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $Fisher</span></span>
 <span><span class="co">#&gt; [1] "Non-singular"</span></span>
